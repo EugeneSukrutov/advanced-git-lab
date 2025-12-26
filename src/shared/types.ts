@@ -4,6 +4,12 @@ export namespace UserTypes {
   email: string;
   profile: IUserMetadata;
  }
+export interface User {
+ id: string;
+ email: string;
+ profile: UserProfile;
+ auth: AuthInfo;
+}
 
  export interface IUserProfile {
   personalInfo: PersonalInformation;
@@ -34,4 +40,28 @@ export namespace UserTypes {
   updatedAt: Date;
   version: number;
  }
+export interface UserProfile {
+ firstName: string;
+ lastName: string;
+ preferences: UserPreferences;
+ security: SecuritySettings;
+}
+
+export interface UserPreferences {
+ theme: 'light' | 'dark' | 'system';
+ notification: boolean;
+ language: string;
+}
+
+export interface AuthInfo {
+ roles: string[];
+ permissions: string[];
+ lastLogin: Date;
+ mfaEnabled: boolean;
+}
+
+export interface SecuritySettings {
+ twoFactorAuth: boolean;
+ loginAlerts: boolean;
+ sessionTimeout: number;
 }

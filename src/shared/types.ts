@@ -1,16 +1,37 @@
-esport interface User {
- id: string;
- email: string;
- profile: UserProfile;
-}
+export namespace UserTypes {
+ export interface IUser {
+  uuid: string;
+  email: string;
+  profile: IUserMetadata;
+ }
 
-export interface UserProfile {
- firstName: string;
- lastName: string;
- preferences: UserPreferences;
-}
+ export interface IUserProfile {
+  personalInfo: PersonalInformation;
+  settings: UserSettings;
+ }
 
-export interface UserPreferences {
- theme: 'light' | 'dark';
- notifications: boolean;
+ export interface PersonalInformation {
+  firstName: string;
+  lastName: string;
+  birthDate?: Date;
+ }
+
+ export interface UserSettings {
+  theme: ThemeMode;
+  notificationSettings: NotificationConfig;
+ }
+
+ export type ThemeMode = 'LIGHT' | 'DARK' | 'AUTO';
+
+ export interface NotificationConfig {
+  email: boolean;
+  push: boolean;
+  sms: boolean;
+ }
+
+ export interface UserMetadata {
+  createdAt: Date;
+  updatedAt: Date;
+  version: number;
+ }
 }
